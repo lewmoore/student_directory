@@ -27,6 +27,10 @@ def print(students)
   end
 end
 
+def name_starts_with(students)
+  students.select {|name| name.start_with?("L")}
+end 
+
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
