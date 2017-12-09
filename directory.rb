@@ -1,3 +1,5 @@
+#Modify your program to only print the students whose name begins with a specific letter.
+#Modify your program to only print the students whose name is shorter than 12 characters.
 
 def input_students
   puts "Please enter the name of the students"
@@ -28,14 +30,19 @@ def print(students)
 end
 
 def name_starts_with(students)
-  students.select {|name| name.start_with?("L")}
-end 
+  students.select {|student| student[:name].start_with?("L")}
+end
+
+def short_name(students)
+  students.select {|student| student[:name].length < 12 }
+end
 
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
 
 students = input_students
+name_starts_with(students)
 print_header
 print(students)
 print_footer(students)
