@@ -1,6 +1,4 @@
-#Modify your program to only print the students whose name begins with a specific letter.
-#Modify your program to only print the students whose name is shorter than 12 characters.
-#Rewrite the each() method that prints all students using while or until control flow methods (Loops).
+#5. Our code only works with the student name and cohort. Add more information: hobbies, country of birth, height, etc.
 
 
 def input_students
@@ -8,11 +6,14 @@ def input_students
   puts "To finish, press return twice"
 
   students = []
-
   name = gets.chomp
 
   while !name.empty? do
-    students << {name: name, cohort: :november}
+    puts "Where is this student from?"
+    location = gets.chomp
+    puts "Enter some hobbies for this student:"
+    hobbies = gets.chomp
+    students << {name: name, cohort: :november, location: location, hobbies: hobbies}
     puts "Now we have #{students.count} students"
     name = gets.chomp
   end
@@ -28,17 +29,9 @@ end
 def print(students)
   x = 0
   while x < students.length
-    puts "#{students[x][:name]} (#{students[x][:cohort]} cohort)"
+    puts "#{students[x][:name]}, #{students[x][:location]}, #{students[x][:hobbies]}, (#{students[x][:cohort]} cohort)"
     x += 1
   end
-end
-
-def name_starts_with(students)
-  students.select {|student| student[:name].start_with?("L")}
-end
-
-def short_name(students)
-  students.select {|student| student[:name].length < 12 }
 end
 
 def print_footer(students)
