@@ -1,5 +1,5 @@
 #Right now if we have only one student, the user will see a message "Now we have 1 students",
-#whereas it should be "Now we have 1 student". 
+#whereas it should be "Now we have 1 student".
 #How can you fix it so that it used singular form when appropriate and plural form otherwise?
 
 
@@ -32,8 +32,7 @@ def print_header
 end
 
 def print(students)
-  cohort_group = students.select {|name| [:cohort].include? "December"}
-  cohort_group.map { |name| puts "#{name[:name]}, #{name[:cohort]}, #{name[:location]}, #{name[:hobbies]}" }
+  students.each { |name| puts "#{name[:name]}, #{name[:cohort]}, #{name[:location]}, #{name[:hobbies]}" }
 end
 
 def print_footer(students)
