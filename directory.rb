@@ -1,7 +1,7 @@
-#5. Our code only works with the student name and cohort. Add more information: hobbies, country of birth, height, etc.
-#6. Research how the method center() of the String class works. Use it in your code to make the output beautifully aligned.
-#7. In the input_students method the cohort value is hard-coded. How can you ask for both the name and the cohort?
-#7. What if one of the values is empty? Can you supply a default value?
+#Right now if we have only one student, the user will see a message "Now we have 1 students",
+#whereas it should be "Now we have 1 student". 
+#How can you fix it so that it used singular form when appropriate and plural form otherwise?
+
 
 def input_students
   puts "Please enter the name of the students"
@@ -37,7 +37,11 @@ def print(students)
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students".center(100)
+    unless students.count == 1
+      puts "Overall, we have #{students.count} great students".center(100)
+    else
+      puts "Overall, we have #{students.count} great student".center(100)
+    end
 end
 
 students = input_students
