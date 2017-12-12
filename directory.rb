@@ -35,6 +35,16 @@ def print(students)
   students.each { |name| puts "#{name[:name]}, #{name[:cohort]}, #{name[:location]}, #{name[:hobbies]}" }
 end
 
+def no_students(students)
+  if students.count == 0
+    puts "There is no students at Makers Academy! :("
+  else
+    print_header
+    print(students)
+    print_footer(students)
+  end
+end
+
 def print_footer(students)
     unless students.count == 1
       puts "Overall, we have #{students.count} great students".center(100)
@@ -44,6 +54,4 @@ def print_footer(students)
 end
 
 students = input_students
-print_header
-print(students)
-print_footer(students)
+no_students(students)
