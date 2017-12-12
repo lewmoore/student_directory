@@ -8,7 +8,6 @@ def input_students
   puts "Please enter the name of the students"
   puts "To finish, press return twice"
 
-  students = []
   name = gets.chomp
 
   while !name.empty? do
@@ -19,8 +18,8 @@ def input_students
     location = gets.chomp
     puts "Enter some hobbies for this student:"
     hobbies = gets.chomp
-    students << {name: name, cohort: cohort, location: location, hobbies: hobbies}
-    puts "Now we have #{students.count} students"
+    @students << {name: name, cohort: cohort, location: location, hobbies: hobbies}
+    puts "Now we have #{@students.count} students"
     name = gets.chomp
   end
   @students
@@ -33,20 +32,9 @@ def print_header
 end
 
 def interactive_menu
-
   loop do
     print_menu
-    selection = gets.chomp
-    case selection
-    when "1"
-      students = input_students
-    when "2"
-      show_students
-    when "9"
-      exit
-    else
-      puts "I don't know what you mean"
-    end
+    process(gets.chomp)
   end
 end
 
@@ -54,6 +42,19 @@ def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
   puts "9. Exit"
+end
+
+def process(selection)
+  case selection
+  when "1"
+    students = input_students
+  when "2"
+    show_students
+  when "9"
+    exit
+  else
+    puts "I don't know what you mean"
+  end
 end
 
 def show_students
