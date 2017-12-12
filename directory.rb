@@ -2,6 +2,7 @@
 #whereas it should be "Now we have 1 student".
 #How can you fix it so that it used singular form when appropriate and plural form otherwise?
 
+@students = []
 
 def input_students
   puts "Please enter the name of the students"
@@ -22,7 +23,7 @@ def input_students
     puts "Now we have #{students.count} students"
     name = gets.chomp
   end
-  students
+  @students
 end
 
 
@@ -31,20 +32,16 @@ def print_header
   puts "----------".center(100)
 end
 
-def menu
-  students = []
+def interactive_menu
+
   loop do
-    puts "1. Input the students"
-    puts "2. Show the students"
-    puts "9. Exit"
+    print_menu
     selection = gets.chomp
     case selection
     when "1"
       students = input_students
     when "2"
-      print_header
-      print(students)
-      print_footer(students)
+      show_students
     when "9"
       exit
     else
@@ -53,28 +50,40 @@ def menu
   end
 end
 
-def print(students)
-  students.each { |name| puts "#{name[:name]}, #{name[:cohort]}, #{name[:location]}, #{name[:hobbies]}" }
+def print_menu
+  puts "1. Input the students"
+  puts "2. Show the students"
+  puts "9. Exit"
 end
 
-def no_students(students)
-  if students.count == 0
+def show_students
+  print_header
+  print
+  print_footer
+end
+
+def print
+  @students.each { |name| puts "#{name[:name]}, #{name[:cohort]}, #{name[:location]}, #{name[:hobbies]}" }
+end
+
+def no_students
+  if @students.count == 0
     puts "There is no students at Makers Academy! :("
   else
     print_header
-    print(students)
-    print_footer(students)
+    print
+    print_footer
   end
 end
 
-def print_footer(students)
-    unless students.count == 1
-      puts "Overall, we have #{students.count} great students".center(100)
+def print_footer
+    unless @students.count == 1
+      puts "Overall, we have #{@students.count} great students".center(100)
     else
-      puts "Overall, we have #{students.count} great student".center(100)
+      puts "Overall, we have #{@students.count} great student".center(100)
     end
 end
 
 
-menu
-no_students(students)
+interactive_menu
+no_students
