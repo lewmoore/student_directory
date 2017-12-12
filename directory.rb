@@ -32,11 +32,8 @@ def print_header
 end
 
 def print(students)
-  x = 0
-  while x < students.length
-    puts "#{students[x][:name]}, #{students[x][:location]}, #{students[x][:hobbies]}, (#{students[x][:cohort]} cohort)".center(100)
-    x += 1
-  end
+  cohort_group = students.select {|name| name.include? "December"}
+  cohort_group.map { |name| puts "#{name[:name]}, #{name[:cohort]}, #{name[:location]}, #{name[:hobbies]}" }
 end
 
 def print_footer(students)
