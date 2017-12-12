@@ -63,7 +63,7 @@ def show_students
   print_footer
 end
 
-def print
+def print_students_list
   @students.each { |name| puts "#{name[:name]}, #{name[:cohort]}, #{name[:location]}, #{name[:hobbies]}" }
 end
 
@@ -72,7 +72,7 @@ def no_students
     puts "There is no students at Makers Academy! :("
   else
     print_header
-    print
+    print_students_list
     print_footer
   end
 end
