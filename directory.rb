@@ -32,7 +32,7 @@ def print_header
 end
 
 def print(students)
-  cohort_group = students.select {|name| name.include? "December"}
+  cohort_group = students.select {|name| [:cohort].include? "December"}
   cohort_group.map { |name| puts "#{name[:name]}, #{name[:cohort]}, #{name[:location]}, #{name[:hobbies]}" }
 end
 
