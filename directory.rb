@@ -59,7 +59,7 @@ end
 
 def show_students
   print_header
-  print
+  print_students_list
   print_footer
 end
 
