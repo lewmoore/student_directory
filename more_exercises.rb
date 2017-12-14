@@ -18,6 +18,7 @@ def input_students
     puts "Now we have #{@students.count} students"
     name = STDIN.gets.chomp
   end
+  success_message
   @students
 end
 
@@ -45,12 +46,16 @@ end
 def process(selection)
   case selection
   when "1"
+    success_message
     students = input_students
   when "2"
+    success_message
     show_students
   when "3"
+    puts success_message
     save_students
   when "4"
+    success_message
     load_students
   when "9"
     exit
@@ -72,26 +77,25 @@ def save_students
     csv_line = student_data.join(",")
     file.puts csv_line
   end
-  file.close
 end
 
 def load_students(filename = "students.csv")
-  file = File.open("students.csv", "r")
-  file.readlines.each do |line|
+  which_file
+  @file = File.open(@file, "r")
+  @file.readlines.each do |line|
     name, cohort, location, hobbies = line.chomp.split(",")
     add_students(name, cohort, location, hobbies)
   end
-  file.close
 end
 
 def try_load_students
-  filename = ARGV.first
-  return if filename.nil?
-  if File.exists?(filename)
-    load_students(filename)
-    puts "Loaded #{@students.count} from #{filename}"
+    ARGV.first ? @file = ARGV.first : @file = "students.csv"
+  return if @file.nil?
+elsif File.exists?(@file)
+    load_students(@file)
+    puts "Loaded #{@students.count} from #{@file}"
   else
-    puts "Sorry, #{filename} doesn't exist"
+    puts "Sorry, #{@file} doesn't exist"
     exit
   end
 end
@@ -120,6 +124,15 @@ def print_footer
     else
       puts "Overall, we have #{@students.count} great student".center(100)
     end
+end
+
+def success_message
+  puts "Your action was successful!"
+end
+
+def which_file
+  puts "Which file would you like to use?"
+  @file = STDIN.gets.chomp
 end
 
 try_load_students
